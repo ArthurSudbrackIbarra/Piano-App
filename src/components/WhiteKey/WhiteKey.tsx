@@ -7,7 +7,8 @@ type WhiteKeyProps = {
 function WhiteKey(props: WhiteKeyProps) {
     return (
         <>
-            <div className={styles.key}>
+            <div className={styles.wrapper}>
+                <div className={styles.key}></div>
                 {props.children}
             </div>
         </>
