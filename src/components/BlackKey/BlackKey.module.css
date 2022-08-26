@@ -1,0 +1,17 @@
+.key {
+    position: absolute;
+    top: 0;
+    right: -20px;
+    background-color: rgb(39, 39, 39);
+    width: 8px;
+    height: 200px;
+    padding: 1rem;
+    border-radius: 0 0 5px 5px;
+    z-index: 100;
+}
+.key:hover {
+    background-color: rgb(27, 27, 27);
+}
+.key:active {
+    background-color: black;
+}

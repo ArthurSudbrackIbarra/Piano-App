@@ -1,0 +1,17 @@
+.key {
+    display: inline-block;
+    position: relative;
+    background-color: white;
+    width: 25px;
+    height: 300px;
+    padding: 1rem;
+    border-radius: 0 0 5px 5px;
+    border-left: 2px solid rgb(225, 225, 225);
+    border-bottom: 2px solid rgb(225, 225, 225);
+}
+.key:hover {
+    background-color: #E5E5E5
+}
+.key:active {
+    background-color: #BFBFBF;
+}
