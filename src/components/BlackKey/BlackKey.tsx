@@ -1,13 +1,15 @@
 import styles from "./BlackKey.module.css"
 
 type BlackKeyProps = {
-    noteName: string
+    note: string
 }
 
 function BlackKey(props: BlackKeyProps) {
     return (
         <div className={styles.key}>
-            {props.noteName}
+            <span className={styles.noteName}>
+                {props.note}
+            </span>
         </div>
     );
 }

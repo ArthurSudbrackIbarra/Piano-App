@@ -1,17 +1,30 @@
 .key {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
     top: 0;
     right: -21px;
-    background-color: #272727;
+    background-color: #3f3f3f;
     width: 8px;
     height: 200px;
     padding: 1rem;
     border-radius: 0 0 5px 5px;
     z-index: 100;
+
+    -webkit-user-select: none;        
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .key:hover {
-    background-color: #1b1b1b;
+    background-color: #2c2c2c;
 }
 .key:active {
     background-color: black;
+}
+.noteName {
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 10px;
 }

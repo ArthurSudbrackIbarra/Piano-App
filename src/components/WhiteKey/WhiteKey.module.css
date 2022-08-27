@@ -3,7 +3,7 @@
     background-color: transparent;
 }
 .wrapper, .key {
-    display: inline-block;
+    display: inline-flex;
     width: 65px;
     height: 350px;
 }
@@ -12,10 +12,23 @@
     border-left: 2px solid #e1e1e1;
     border-bottom: 2px solid #e1e1e1;
     border-radius: 0 0 5px 5px;
+    justify-content: center;
+    align-items: flex-end;
+
+    -webkit-user-select: none;  
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 .key:hover {
     background-color: #e5e5e5
 }
 .key:active {
     background-color: #bfbfbf;
+}
+.noteName {
+    font-weight: bold;
+    color: #3f3f3f;
+    font-size: 1.2em;
+    margin-bottom: 10px;
 }

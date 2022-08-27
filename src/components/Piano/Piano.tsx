@@ -1,3 +1,4 @@
+import styles from "./Piano.module.css"
 import BlackKey from "../BlackKey/BlackKey";
 import WhiteKey from "../WhiteKey/WhiteKey";
 
@@ -5,27 +6,27 @@ const intervals: number[] = [0, 1, 2]
 
 function Piano() {
     return (
-        <div className="piano" >
+        <div className={styles.piano} >
             {intervals.map(interval => {
                 return (
                     <>
-                        <WhiteKey noteName={`C${interval}`}>
-                            <BlackKey noteName={`C#${interval}`} />
+                        <WhiteKey note={`C${interval}`}>
+                            <BlackKey note={`C#${interval}`} />
                         </WhiteKey >
-                        <WhiteKey noteName={`D${interval}`}>
-                            <BlackKey noteName={`D#${interval}`} />
+                        <WhiteKey note={`D${interval}`}>
+                            <BlackKey note={`D#${interval}`} />
                         </WhiteKey>
-                        <WhiteKey noteName={`E${interval}`} />
-                        <WhiteKey noteName={`F${interval}`}>
-                            <BlackKey noteName={`F#${interval}`} />
+                        <WhiteKey note={`E${interval}`} />
+                        <WhiteKey note={`F${interval}`}>
+                            <BlackKey note={`F#${interval}`} />
                         </WhiteKey>
-                        <WhiteKey noteName={`G${interval}`}>
-                            <BlackKey noteName={`G#${interval}`} />
+                        <WhiteKey note={`G${interval}`}>
+                            <BlackKey note={`G#${interval}`} />
                         </WhiteKey>
-                        <WhiteKey noteName={`A${interval}`}>
-                            <BlackKey noteName={`A#${interval}`} />
+                        <WhiteKey note={`A${interval}`}>
+                            <BlackKey note={`A#${interval}`} />
                         </WhiteKey>
-                        <WhiteKey noteName={`B${interval}`} />
+                        <WhiteKey note={`B${interval}`} />
                     </>
                 )
             })}

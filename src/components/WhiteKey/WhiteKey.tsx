@@ -2,14 +2,16 @@ import styles from "./WhiteKey.module.css"
 
 type WhiteKeyProps = {
     children?: React.ReactNode // Black Key Children.
-    noteName: string
+    note: string
 }
 
 function WhiteKey(props: WhiteKeyProps) {
     return (
         <div className={styles.wrapper}>
             <div className={styles.key}>
-                {props.noteName}
+                <span className={styles.noteName}>
+                    {props.note}
+                </span>
             </div>
             {props.children}
         </div>
