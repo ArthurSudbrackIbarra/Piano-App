@@ -1,8 +1,8 @@
-import React, { useEffect } from "react";
-import styles from "./Piano.module.css"
+import React from "react";
 import BlackKey from "../BlackKey/BlackKey";
 import WhiteKey from "../WhiteKey/WhiteKey";
-import { getNote } from "../../utils/keyMapping";
+import styles from "./Piano.module.css"
+import { getNoteByKey } from "../../utils/keyMapping";
 import { playNote } from "../../utils/audioHandler";
 
 /* 
@@ -44,40 +44,53 @@ function mouseUpHandler() {
 */
 
 /*
-    Notes [C1, C#1, D1...]
-*/
-const intervals = [1, 2, 3, 4, 5, 6, 7]
-
-/*
     Play Notes on Key Presses Logic - Start
 */
 const keyDownMap = new Map<string, boolean>();
-function keyDownHandler(event: globalThis.KeyboardEvent) {
-    const note = getNote(event.key)
+const noteElements = new Map<string, HTMLElement>();
+const keyDownHandler = (event: globalThis.KeyboardEvent) => {
+    const note = getNoteByKey(event.key)
     if (note) {
-        if (!keyDownMap.get(event.key)) {
-            keyDownMap.set(event.key, true)
-            playNote(note); // Change this later...
+        if (!keyDownMap.get(note)) {
+            keyDownMap.set(note, true);
+            let noteElement = noteElements.get(note);
+            if (!noteElement) {
+                noteElement = document.getElementById(note) || undefined;
+                if (noteElement) {
+                    noteElements.set(note, noteElement);
+                }
+            }
+            noteElement?.classList.add("active")
+            playNote(note);
         }
     }
 }
-function keyUpHandler(event: globalThis.KeyboardEvent) {
-    keyDownMap.set(event.key, false)
+const keyUpHandler = (event: globalThis.KeyboardEvent) => {
+    const note = getNoteByKey(event.key);
+    if (note) {
+        keyDownMap.set(note, false)
+        let noteElement = noteElements.get(note);
+        if (!noteElement) {
+            noteElement = document.getElementById(note) || undefined;
+            if (noteElement) {
+                noteElements.set(note, noteElement);
+            }
+        }
+        noteElement?.classList.remove("active")
+    }
 }
-function setupKeyMapping() {
-    window.removeEventListener("keydown", keyDownHandler);
-    window.addEventListener("keydown", keyDownHandler);
-    window.removeEventListener("keyup", keyUpHandler);
-    window.addEventListener("keyup", keyUpHandler);
-}
+window.addEventListener("keydown", keyDownHandler);
+window.addEventListener("keyup", keyUpHandler);
 /*
     Play Notes on Key Presses Logic - End
 */
 
+/*
+    Notes [C1, C#1, D1...]
+*/
+const intervals = [1, 2, 3, 4, 5, 6, 7]
+
 function Piano() {
-    useEffect(() => {
-        setupKeyMapping();
-    }, []);
     return (
         <div className={styles.piano} ref={pianoRef} onMouseDown={mouseDownHandler}>
             {intervals.map((interval, index) => {

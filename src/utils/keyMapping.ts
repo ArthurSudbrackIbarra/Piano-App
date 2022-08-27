@@ -3,6 +3,6 @@ const keysMap = new Map<string, string>([
   ["w", "C#4"],
 ]);
 
-export function getNote(note: string): string | undefined {
-  return keysMap.get(note);
+export function getNoteByKey(key: string): string | undefined {
+  return keysMap.get(key);
 }

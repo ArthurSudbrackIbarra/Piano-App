@@ -7,7 +7,7 @@ type BlackKeyProps = {
 
 function BlackKey(props: BlackKeyProps) {
     return (
-        <div className={styles.key} id={props.note} onMouseDown={() => { playNote(props.note) }}>
+        <div className={`${styles.key} blackKey`} id={props.note} onMouseDown={() => { playNote(props.note) }}>
             <span className={styles.noteName}>
                 {props.note}
             </span>

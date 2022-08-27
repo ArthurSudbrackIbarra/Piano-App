@@ -1,3 +1,4 @@
-(C4 10)-(E4 10)-(G4 10) # Play a C chord holding each note for 10 seconds.
-~5 # Pause for 5 seconds.
-(F4 5)-(A4 5)-(C5 5) # Play an F chord holding each note for 5 seconds.
+BPM 140 # Sets the beats per minute.
+(C4 10)-(E4 10)-(G4 10) # Plays a C chord holding each note for 10 seconds.
+PAUSE 5 # Pauses for 5 seconds.
+(F4 5)-(A4 5)-(C5 5) # Plays an F chord holding each note for 5 seconds.

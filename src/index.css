@@ -12,3 +12,13 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/*
+  Global piano keys configuration.
+*/
+.whiteKey.active {
+  background-color: #bfbfbf;
+}
+.blackKey.active {
+  background-color: black;
+}
