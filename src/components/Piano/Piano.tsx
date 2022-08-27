@@ -42,9 +42,9 @@ function mouseUpHandler() {
 */
 
 /*
-    Notes [C0, C#0, D0...]
+    Notes [C1, C#1, D1...]
 */
-const intervals = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+const intervals = [1, 2, 3, 4, 5, 6, 7]
 
 function Piano() {
     return (
@@ -72,6 +72,7 @@ function Piano() {
                     </React.Fragment>
                 )
             })}
+            <WhiteKey note="C8" />
         </div >
     );
 }
