@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import BlackKey from "../BlackKey/BlackKey";
 import WhiteKey from "../WhiteKey/WhiteKey";
 import styles from "./Piano.module.css"
@@ -91,6 +91,13 @@ window.addEventListener("keyup", keyUpHandler);
 const intervals = [1, 2, 3, 4, 5, 6, 7]
 
 function Piano() {
+    useEffect(() => {
+        if (pianoRef.current) {
+            if (!pianoRef.current.scrollLeft) {
+                pianoRef.current.scrollLeft += 456;
+            }
+        }
+    })
     return (
         <div className={styles.piano} ref={pianoRef} onMouseDown={mouseDownHandler}>
             {intervals.map((interval, index) => {
