@@ -126,8 +126,8 @@ function Piano() {
             })}
             <WhiteKey note="C8" />
 
-            <button style={{ position: "absolute", width: "500px", height: "500px" }} onClick={async () => {
-                const content = "BPM 180\n(C4 10) (E4 10) (G4 10)\n(F4 5) (A4 5) (C5 5)"
+            <button style={{ position: "absolute", width: "500px", height: "200px", top: "100px" }} onClick={async () => {
+                const content = "BPM 180\n(C4 500) (E4 10) (G4 10)\n(F4 5) (A4 5) (C5 5)\n(C3 0.01)"
                 const pianoInterpreter = new PianoInterpreter(content)
                 await pianoInterpreter.interpret();
             }}></button>

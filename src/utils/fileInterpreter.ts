@@ -25,7 +25,6 @@ export class PianoInterpreter {
           continue;
         }
         const splitted = line.split(/\(*\)( |\n)/);
-        console.log(splitted);
         switch (true) {
           case splitted[0].toUpperCase().startsWith("BPM"):
             {
@@ -52,7 +51,14 @@ export class PianoInterpreter {
                 .split(" ");
               const note = parts[0];
               const duration = parseInt(parts[1]);
+              // Plays the note sound.
               playNote(note, duration);
+              // Animates the keys.
+              document.getElementById(note)?.classList.add("active");
+              // Timeout to remove the animation.
+              setTimeout(() => {
+                document.getElementById(note)?.classList.remove("active");
+              }, 300);
             }
           }
         }
