@@ -4,6 +4,7 @@ import WhiteKey from "../WhiteKey/WhiteKey";
 import styles from "./Piano.module.css"
 import { getNoteByKey } from "../../utils/keyMapping";
 import { playNote } from "../../utils/audioHandler";
+import { PianoInterpreter } from "../../utils/fileInterpreter";
 
 /* 
     Draggable Piano Logic - Start
@@ -48,7 +49,7 @@ function mouseUpHandler() {
 */
 const keyDownMap = new Map<string, boolean>();
 const noteElements = new Map<string, HTMLElement>();
-const keyDownHandler = (event: globalThis.KeyboardEvent) => {
+const simulateKeyDown = (event: globalThis.KeyboardEvent) => {
     const note = getNoteByKey(event.key)
     if (note) {
         if (!keyDownMap.get(note)) {
@@ -65,7 +66,7 @@ const keyDownHandler = (event: globalThis.KeyboardEvent) => {
         }
     }
 }
-const keyUpHandler = (event: globalThis.KeyboardEvent) => {
+const simulateKeyUp = (event: globalThis.KeyboardEvent) => {
     const note = getNoteByKey(event.key);
     if (note) {
         keyDownMap.set(note, false)
@@ -79,8 +80,8 @@ const keyUpHandler = (event: globalThis.KeyboardEvent) => {
         noteElement?.classList.remove("active")
     }
 }
-window.addEventListener("keydown", keyDownHandler);
-window.addEventListener("keyup", keyUpHandler);
+window.addEventListener("keydown", simulateKeyDown);
+window.addEventListener("keyup", simulateKeyUp);
 /*
     Play Notes on Key Presses Logic - End
 */
@@ -124,6 +125,13 @@ function Piano() {
                 )
             })}
             <WhiteKey note="C8" />
+
+            <button style={{ position: "absolute", width: "500px", height: "500px" }} onClick={async () => {
+                const content = "BPM 180\n(C4 10) (E4 10) (G4 10)\n(F4 5) (A4 5) (C5 5)"
+                const pianoInterpreter = new PianoInterpreter(content)
+                await pianoInterpreter.interpret();
+            }}></button>
+
         </div >
     );
 }

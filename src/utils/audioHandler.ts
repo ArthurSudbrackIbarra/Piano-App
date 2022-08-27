@@ -15,9 +15,11 @@ async function createGlobalInstrument(
 */
 createGlobalInstrument(GRAND_PIANO);
 
-export function playNote(note: string): boolean {
+export function playNote(note: string, duration?: number): boolean {
   if (instrument) {
-    instrument.play(note);
+    instrument.play(note, undefined, {
+      duration: duration,
+    });
     return true;
   }
   console.warn("The instrument is not ready yet.");
