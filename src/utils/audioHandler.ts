@@ -1,7 +1,7 @@
 import Soundfont, { InstrumentName } from "soundfont-player";
 
 let instrument: Soundfont.Player | null = null;
-const GRAND_PIANO: InstrumentName = "acoustic_grand_piano";
+const GRAND_PIANO: InstrumentName = "electric_piano_1";
 
 async function createGlobalInstrument(
   instrumentName: InstrumentName
