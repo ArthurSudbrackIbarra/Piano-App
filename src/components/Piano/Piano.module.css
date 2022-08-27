@@ -1,5 +1,6 @@
 .piano {
     display: flex;
-    max-width: 700px;
+    max-width: 80%;
     overflow: hidden;
+    cursor: grab
 }
