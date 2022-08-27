@@ -1,7 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./Piano.module.css"
 import BlackKey from "../BlackKey/BlackKey";
 import WhiteKey from "../WhiteKey/WhiteKey";
+import { getNote } from "../../utils/keyMapping";
+import { playNote } from "../../utils/audioHandler";
 
 /* 
     Draggable Piano Logic - Start
@@ -46,7 +48,36 @@ function mouseUpHandler() {
 */
 const intervals = [1, 2, 3, 4, 5, 6, 7]
 
+/*
+    Play Notes on Key Presses Logic - Start
+*/
+const keyDownMap = new Map<string, boolean>();
+function keyDownHandler(event: globalThis.KeyboardEvent) {
+    const note = getNote(event.key)
+    if (note) {
+        if (!keyDownMap.get(event.key)) {
+            keyDownMap.set(event.key, true)
+            playNote(note); // Change this later...
+        }
+    }
+}
+function keyUpHandler(event: globalThis.KeyboardEvent) {
+    keyDownMap.set(event.key, false)
+}
+function setupKeyMapping() {
+    window.removeEventListener("keydown", keyDownHandler);
+    window.addEventListener("keydown", keyDownHandler);
+    window.removeEventListener("keyup", keyUpHandler);
+    window.addEventListener("keyup", keyUpHandler);
+}
+/*
+    Play Notes on Key Presses Logic - End
+*/
+
 function Piano() {
+    useEffect(() => {
+        setupKeyMapping();
+    }, []);
     return (
         <div className={styles.piano} ref={pianoRef} onMouseDown={mouseDownHandler}>
             {intervals.map((interval, index) => {
