@@ -2,7 +2,7 @@
     position: absolute;
     top: 0;
     right: -21px;
-    background-color: rgb(39, 39, 39);
+    background-color: #272727;
     width: 8px;
     height: 200px;
     padding: 1rem;
@@ -10,7 +10,7 @@
     z-index: 100;
 }
 .key:hover {
-    background-color: rgb(27, 27, 27);
+    background-color: #1b1b1b;
 }
 .key:active {
     background-color: black;

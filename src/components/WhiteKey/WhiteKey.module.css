@@ -8,14 +8,14 @@
     height: 350px;
 }
 .key {
-    background-color: white;
-    border-left: 2px solid rgb(225, 225, 225);
-    border-bottom: 2px solid rgb(225, 225, 225);
+    background-color: #ffffff;
+    border-left: 2px solid #e1e1e1;
+    border-bottom: 2px solid #e1e1e1;
     border-radius: 0 0 5px 5px;
 }
 .key:hover {
-    background-color: #E5E5E5
+    background-color: #e5e5e5
 }
 .key:active {
-    background-color: #BFBFBF;
+    background-color: #bfbfbf;
 }

@@ -1,27 +1,12 @@
-import BlackKey from '../BlackKey/BlackKey';
-import WhiteKey from '../WhiteKey/WhiteKey';
+import Center from '../Center/Center';
+import Piano from '../Piano/Piano';
 
 function App() {
   return (
     <>
-      <WhiteKey>
-        <BlackKey/>
-      </WhiteKey>
-      <WhiteKey>
-        <BlackKey/>
-      </WhiteKey>
-      <WhiteKey/>
-      <WhiteKey>
-        <BlackKey/>
-      </WhiteKey>
-      <WhiteKey>
-        <BlackKey/>
-      </WhiteKey>
-      <WhiteKey>
-        <BlackKey/>
-      </WhiteKey>
-      <WhiteKey/>
-      <WhiteKey/>
+      <Center>
+        <Piano />
+      </Center>
     </>
   );
 }
