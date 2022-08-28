@@ -42,7 +42,7 @@ export class PianoInterpreter {
             break;
           default: {
             for (const noteData of splitted) {
-              if (noteData === " ") {
+              if (noteData === " " || noteData.length === 0) {
                 continue;
               }
               const parts = noteData
@@ -58,7 +58,7 @@ export class PianoInterpreter {
               // Timeout to remove the animation.
               setTimeout(() => {
                 document.getElementById(note)?.classList.remove("active");
-              }, 300);
+              }, 20000 / this.bpm);
             }
           }
         }
