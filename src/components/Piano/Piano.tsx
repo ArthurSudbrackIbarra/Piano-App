@@ -4,7 +4,6 @@ import WhiteKey from "../WhiteKey/WhiteKey";
 import styles from "./Piano.module.css"
 import { getNoteByKey } from "../../utils/keyMapping";
 import { playNote } from "../../utils/audioHandler";
-import { PianoInterpreter } from "../../utils/fileInterpreter";
 
 /* 
     Draggable Piano Logic - Start
@@ -35,7 +34,7 @@ function mouseMoveHandler(event: any) {
 }
 function mouseUpHandler() {
     if (pianoRef.current) {
-        pianoRef.current.style.cursor = "grab"
+        pianoRef.current.style.cursor = "grab";
     }
     window.removeEventListener("mousemove", mouseMoveHandler)
     window.removeEventListener("mouseup", mouseUpHandler)
