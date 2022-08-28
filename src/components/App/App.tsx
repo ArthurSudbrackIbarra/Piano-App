@@ -7,7 +7,8 @@ import MenuOption from '../MenuOption/MenuOption';
 import MenuSelect from '../MenuSelect/MenuSelect';
 import Piano from '../Piano/Piano';
 import UploadFile from '../UploadFile/UploadFile';
-import { instrumentsList } from '../../utils/audioHandler';
+import { createGlobalInstrument, instrumentsList } from '../../utils/audioHandler';
+import { InstrumentName } from 'soundfont-player';
 
 function App() {
   const UPLOAD_FILE_INPUT_ID = "fileUpload";
@@ -33,7 +34,11 @@ function App() {
     });
     return fileName;
   }
-
+  const changeInstrument = async (instrumentName: string) => {
+    if (instrumentsList.includes(instrumentName)) {
+      await createGlobalInstrument(instrumentName as InstrumentName);
+    }
+  }
   return (
     <>
       <Center>
@@ -45,7 +50,9 @@ function App() {
           </MenuOption>
           <MenuOption title="Instruments">
             Choose which instrument to use.
-            <MenuSelect options={instrumentsList} datalistId="instrumentsList" />
+            <MenuSelect options={instrumentsList} inputId="instrumentsInput" datalistId="instrumentsList" initialValue="acoustic_grand_piano" onChange={async instrumentName => {
+              await changeInstrument(instrumentName);
+            }} />
           </MenuOption>
           <MenuOption title="Load Files">
             Load '.piano' files and enjoy songs!

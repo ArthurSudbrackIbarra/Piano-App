@@ -1,12 +1,21 @@
+import { useEffect } from 'react';
 import styles from './MenuSelect.module.css';
 
 type MenuSelectProps = {
     options: string[],
+    inputId: string,
     datalistId: string,
-    onChange?: (value: string) => void,
+    initialValue: string,
+    onChange: (value: string) => void,
 }
 
 function MenuSelect(props: MenuSelectProps) {
+    useEffect(() => {
+        const input = document.getElementById(props.inputId) as HTMLInputElement;
+        if (input) {
+            input.value = props.initialValue;
+        }
+    });
     return (
         <>
             <datalist id={props.datalistId}>
@@ -14,7 +23,7 @@ function MenuSelect(props: MenuSelectProps) {
                     <option key={option} value={option} />
                 ))}
             </datalist>
-            <input list={props.datalistId} className={styles.select} value={props.options[0] ? props.options[0] : ""}></input>
+            <input id={props.inputId} list={props.datalistId} className={styles.select} onChange={event => { props.onChange(event.target.value) }}></input>
         </>
     );
 }
