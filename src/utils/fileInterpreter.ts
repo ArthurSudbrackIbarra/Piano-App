@@ -17,7 +17,7 @@ export class PianoInterpreter {
     }
   }
 
-  public async interpret(): Promise<boolean> {
+  public async play(): Promise<void> {
     try {
       const lines = this.content.split("\n");
       for (const line of lines) {
@@ -64,9 +64,8 @@ export class PianoInterpreter {
         }
         await delay(60000 / this.bpm);
       }
-      return true;
     } catch (error) {
-      return false;
+      throw new Error("Error: Invalid '.piano' file.");
     }
   }
 }
