@@ -9,11 +9,11 @@ import Piano from '../Piano/Piano';
 import UploadFile from '../UploadFile/UploadFile';
 import { createGlobalInstrument, instrumentsList } from '../../utils/audioHandler';
 import { InstrumentName } from 'soundfont-player';
+import { getGlobalFileContent, getGlobalInstrument } from '../../utils/globals';
 
 function App() {
   const UPLOAD_FILE_INPUT_ID = "fileUpload";
   const [fileName, setFileName] = useState("");
-  const [fileContent, setFileContent] = useState("");
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const playSong = async (fileContent: string) => {
     if (!fileName || !fileContent) {
@@ -50,7 +50,7 @@ function App() {
           </MenuOption>
           <MenuOption title="Instruments">
             Choose which instrument to use.
-            <MenuSelect options={instrumentsList} inputId="instrumentsInput" datalistId="instrumentsList" initialValue="acoustic_grand_piano" onChange={async instrumentName => {
+            <MenuSelect options={instrumentsList} inputId="instrumentsInput" datalistId="instrumentsList" initialValue={getGlobalInstrument()} onChange={async instrumentName => {
               await changeInstrument(instrumentName);
             }} />
           </MenuOption>
@@ -63,13 +63,12 @@ function App() {
             </MenuButton>
             <UploadFile id={UPLOAD_FILE_INPUT_ID} onChange={(fileName, fileContent) => {
               setFileName(fileName);
-              setFileContent(fileContent);
             }} />
           </MenuOption>
           <MenuOption title="Play">
             Click the 'Play!' button to start the music!
             <MenuButton onClick={async () => {
-              await playSong(fileContent);
+              await playSong(getGlobalFileContent());
             }} disabled={!fileName}>
               {fileName ? `Play ${formatFileName(fileName)}` : "No File Loaded"}
             </MenuButton>

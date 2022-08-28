@@ -3,11 +3,11 @@
     border-radius: 20px;
     font-weight: bold;
     background-color: #7585af;
-    padding: 1rem;
+    padding: 0.8rem;
     color: white;
     outline: none;
     border: none;
-    width: 40%;
+    width: 60%;
     text-align: center;
     cursor: default;
 }

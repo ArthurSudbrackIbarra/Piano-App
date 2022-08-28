@@ -1,4 +1,5 @@
 import { useEffect } from 'react';
+import { setGlobalInstrument } from '../../utils/globals';
 import styles from './MenuSelect.module.css';
 
 type MenuSelectProps = {
@@ -23,7 +24,12 @@ function MenuSelect(props: MenuSelectProps) {
                     <option key={option} value={option} />
                 ))}
             </datalist>
-            <input id={props.inputId} list={props.datalistId} className={styles.select} onChange={event => { props.onChange(event.target.value) }}></input>
+            <input id={props.inputId} list={props.datalistId} className={styles.select} onChange={
+                event => {
+                    setGlobalInstrument(event.target.value);
+                    props.onChange(event.target.value)
+                }}>
+            </input>
         </>
     );
 }

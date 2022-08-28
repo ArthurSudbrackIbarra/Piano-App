@@ -7,6 +7,7 @@
     color: white;
     padding: 1rem;
     text-align: justify;
+    border-radius: 20px;
 }
 .title {
     margin-bottom: 1rem;
