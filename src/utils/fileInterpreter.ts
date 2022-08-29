@@ -29,35 +29,28 @@ export class PianoInterpreter {
           .replace(/\s+/g, " ")
           .trim()
           .split(/\(*\)( |\n)/);
-        switch (true) {
-          case splitted[0].toUpperCase().startsWith("START"):
-            hasStarted = true;
-            break;
-          case splitted[0].toUpperCase().startsWith("BPM") && hasStarted:
-            {
-              const parts = splitted[0].split(" ");
-              const bpm = parseInt(parts[1]);
-              this.bpm = bpm;
-            }
-            break;
-          case splitted[0].toUpperCase().startsWith("PAUSE") && hasStarted:
-            {
-              const parts = splitted[0].split(" ");
-              const seconds = parseInt(parts[1]) * 1000;
-              await delay(seconds);
-            }
-            break;
-          default: {
-            if (hasStarted) {
-              for (const noteData of splitted) {
-                if (noteData === " " || noteData.length === 0) {
-                  continue;
+        if (splitted[0].toUpperCase() === "START") {
+          hasStarted = true;
+        } else {
+          if (hasStarted) {
+            for (const item of splitted) {
+              if (item === " " || item.length === 0) {
+                continue;
+              }
+              const parts = item
+                .replace("(", "")
+                .replace(")", "")
+                .toUpperCase()
+                .split(" ");
+              if (parts[0] === "BPM") {
+                if (parts[1]) {
+                  this.bpm = parseInt(parts[1]);
                 }
-                const parts = noteData
-                  .replace("(", "")
-                  .replace(")", "")
-                  .toUpperCase()
-                  .split(" ");
+              } else if (parts[0] === "PAUSE") {
+                if (parts[1]) {
+                  await delay(parseInt(parts[1]) * 1000);
+                }
+              } else {
                 const note = parts[0];
                 let duration = 1;
                 if (parts[1]) {
