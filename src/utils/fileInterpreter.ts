@@ -25,7 +25,10 @@ export class PianoInterpreter {
         if (line.length === 0) {
           continue;
         }
-        const splitted = line.split(/\(*\)( |\n)/);
+        const splitted = line
+          .replace(/\s+/g, " ")
+          .trim()
+          .split(/\(*\)( |\n)/);
         switch (true) {
           case splitted[0].toUpperCase().startsWith("START"):
             hasStarted = true;
@@ -53,9 +56,13 @@ export class PianoInterpreter {
                 const parts = noteData
                   .replace("(", "")
                   .replace(")", "")
+                  .toUpperCase()
                   .split(" ");
                 const note = parts[0];
-                const duration = parseInt(parts[1]);
+                let duration = 1;
+                if (parts[1]) {
+                  duration = parseInt(parts[1]);
+                }
                 // Plays the note sound.
                 playNote(note, duration);
                 // Animates the keys.
