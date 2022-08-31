@@ -9,7 +9,7 @@ export class PianoInterpreter {
   private bpm: number;
 
   constructor(content: string, bpm: number = 120) {
-    this.content = content;
+    this.content = content.replace(/\n/g, "\r\n");;
     if (bpm > 0) {
       this.bpm = bpm;
     } else {
@@ -18,6 +18,7 @@ export class PianoInterpreter {
   }
 
   public async play(): Promise<void> {
+    console.log(this.content)
     try {
       const lines = this.content.split("\n");
       let hasStarted = false;
@@ -42,13 +43,17 @@ export class PianoInterpreter {
                 .replace(")", "")
                 .toUpperCase()
                 .split(" ");
+
+              console.log(parts);
+              
               if (parts[0] === "BPM") {
                 if (parts[1]) {
                   this.bpm = parseInt(parts[1]);
+                  console.log("Entrou no BPM, BPM atual agora é: " + this.bpm);  
                 }
               } else if (parts[0] === "PAUSE") {
                 if (parts[1]) {
-                  await delay(parseInt(parts[1]) * 1000);
+                  await delay(parseInt(parts[1]));
                 }
               } else {
                 const note = parts[0];
@@ -69,7 +74,9 @@ export class PianoInterpreter {
           }
         }
         if (hasStarted) {
+          console.log(60000 / this.bpm);
           await delay(60000 / this.bpm);
+          console.log("Entrou na espera.");
         }
       }
     } catch (error) {
