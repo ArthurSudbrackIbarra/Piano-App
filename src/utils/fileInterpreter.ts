@@ -1,24 +1,29 @@
 import { playNote } from "./audioHandler";
 
 function delay(milliseconds: number) {
-  return new Promise((resolve) => setTimeout(resolve, milliseconds));
+  return new Promise(resolve => setTimeout(resolve, milliseconds));
+}
+
+enum Commands {
+  WAIT = "~",
+  SPEED = ">>",
+  START = "---",
 }
 
 export class PianoInterpreter {
   private content: string;
-  private bpm: number;
+  private speed: number;
 
-  constructor(content: string, bpm: number = 120) {
-    this.content = content.replace(/\n/g, "\r\n");;
-    if (bpm > 0) {
-      this.bpm = bpm;
+  constructor(content: string, speed: number = 120) {
+    this.content = content.replace(/\n/g, "\r\n");
+    if (speed > 0) {
+      this.speed = speed;
     } else {
-      this.bpm = 120;
+      this.speed = 120;
     }
   }
 
   public async play(): Promise<void> {
-    console.log(this.content)
     try {
       const lines = this.content.split("\n");
       let hasStarted = false;
@@ -30,7 +35,7 @@ export class PianoInterpreter {
           .replace(/\s+/g, " ")
           .trim()
           .split(/\(*\)( |\n)/);
-        if (splitted[0].toUpperCase() === "START") {
+        if (splitted[0].toUpperCase() === Commands.START) {
           hasStarted = true;
         } else {
           if (hasStarted) {
@@ -42,16 +47,12 @@ export class PianoInterpreter {
                 .replace("(", "")
                 .replace(")", "")
                 .toUpperCase()
-                .split(" ");
-
-              console.log(parts);
-              
-              if (parts[0] === "BPM") {
+                .split(" ");   
+              if (parts[0] === Commands.SPEED) {
                 if (parts[1]) {
-                  this.bpm = parseInt(parts[1]);
-                  console.log("Entrou no BPM, BPM atual agora é: " + this.bpm);  
+                  this.speed = parseInt(parts[1]);
                 }
-              } else if (parts[0] === "PAUSE") {
+              } else if (parts[0] === Commands.WAIT) {
                 if (parts[1]) {
                   await delay(parseInt(parts[1]));
                 }
@@ -68,15 +69,13 @@ export class PianoInterpreter {
                 // Timeout to remove the animation.
                 setTimeout(() => {
                   document.getElementById(note)?.classList.remove("active");
-                }, 20000 / this.bpm);
+                }, 20000 / this.speed);
               }
             }
           }
         }
         if (hasStarted) {
-          console.log(60000 / this.bpm);
-          await delay(60000 / this.bpm);
-          console.log("Entrou na espera.");
+          await delay(60000 / this.speed);
         }
       }
     } catch (error) {
