@@ -1,7 +1,7 @@
 import { playNote } from "./audioHandler";
 
 function delay(milliseconds: number) {
-  return new Promise(resolve => setTimeout(resolve, milliseconds));
+  return new Promise((resolve) => setTimeout(resolve, milliseconds));
 }
 
 enum Commands {
@@ -47,7 +47,7 @@ export class PianoInterpreter {
                 .replace("(", "")
                 .replace(")", "")
                 .toUpperCase()
-                .split(" ");   
+                .split(" ");
               if (parts[0] === Commands.SPEED) {
                 if (parts[1]) {
                   this.speed = parseInt(parts[1]);
