@@ -1,19 +1,17 @@
 import styles from "./MenuOption.module.css";
 
 type MenuOptionProps = {
-  children: React.ReactNode;
+  children?: React.ReactNode;
   title: string;
-  backgroundColor?: "#9cacd5";
+  description: string;
 };
 
 function MenuOption(props: MenuOptionProps) {
   return (
-    <div
-      className={styles.box}
-      style={{ backgroundColor: props.backgroundColor }}
-    >
+    <div className={styles.box}>
       <h2 className={styles.title}>{props.title}</h2>
       {props.children}
+      <p className={styles.descripttion}>{props.description}</p>
     </div>
   );
 }

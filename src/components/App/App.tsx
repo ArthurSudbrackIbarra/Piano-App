@@ -47,12 +47,15 @@ function App() {
       <Center>
         <Piano />
         <MenuBox>
-          <MenuOption title="How to Play">
-            Click the piano keys with the mouse or use your keyboard to play.
-            Drag the mouse to reach lower or higher notes.
-          </MenuOption>
-          <MenuOption title="Instruments">
-            Choose which instrument to use.
+          <MenuOption
+            title="How to Play"
+            description="Click the piano keys with the mouse or use your keyboard to play.
+            Drag the mouse to reach lower or higher notes."
+          ></MenuOption>
+          <MenuOption
+            title="Instruments"
+            description="Choose which instrument to use."
+          >
             <MenuSelect
               options={instrumentsList}
               inputId="instrumentsInput"
@@ -63,8 +66,10 @@ function App() {
               }}
             />
           </MenuOption>
-          <MenuOption title="Load Files">
-            Load '.piano' files and let the piano play by itself!
+          <MenuOption
+            title="Load Files"
+            description="Load '.piano' files and let the piano play by itself!"
+          >
             <MenuButton
               onClick={() => {
                 document.getElementById(UPLOAD_FILE_INPUT_ID)?.click();
@@ -79,8 +84,10 @@ function App() {
               }}
             />
           </MenuOption>
-          <MenuOption title="Play">
-            Click the 'Play!' button to start the song that you've loaded.
+          <MenuOption
+            title="Play"
+            description="Click the 'Play!' button to start the song that you've loaded."
+          >
             <MenuButton
               onClick={async () => {
                 await playSong(getGlobalFileContent());

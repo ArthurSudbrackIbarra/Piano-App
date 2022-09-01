@@ -9,4 +9,8 @@
     border-top: 2px solid #7081ac;
     border-right: 2px solid #7081ac;
     background-color: #9cacd5;
+    padding: 1rem;
+}
+.box p {
+    margin: 0;
 }

@@ -1,5 +1,4 @@
 .select {
-    margin: 2rem 0 0 0;
     border-radius: 20px;
     font-weight: bold;
     background-color: #7585af;
@@ -13,6 +12,7 @@
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif !important;
     font-size: 1em;
+    margin-bottom: 1.5rem;
 }
 .select:hover {
     background-color: #7081ac;
