@@ -4,10 +4,10 @@
     font-weight: bold;
     background-color: #7585af;
     padding: 0.8rem;
-    margin: 1rem;
+    margin: 2rem 0 0 0;
     width: 60%;
     text-align: center;
-    margin-top: auto;
+    justify-self: flex-end;
 }
 .button:hover {
     background-color: #7081ac;

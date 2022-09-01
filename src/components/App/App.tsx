@@ -64,7 +64,7 @@ function App() {
             />
           </MenuOption>
           <MenuOption title="Load Files">
-            Load '.piano' files and enjoy songs!
+            Load '.piano' files and let the piano play by itself!
             <MenuButton
               onClick={() => {
                 document.getElementById(UPLOAD_FILE_INPUT_ID)?.click();
@@ -74,13 +74,13 @@ function App() {
             </MenuButton>
             <UploadFile
               id={UPLOAD_FILE_INPUT_ID}
-              onChange={(fileName, fileContent) => {
+              onChange={(fileName) => {
                 setFileName(fileName);
               }}
             />
           </MenuOption>
           <MenuOption title="Play">
-            Click the 'Play!' button to start the music!
+            Click the 'Play!' button to start the song that you've loaded.
             <MenuButton
               onClick={async () => {
                 await playSong(getGlobalFileContent());
