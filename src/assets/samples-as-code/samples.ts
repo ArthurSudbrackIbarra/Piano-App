@@ -1,4 +1,4 @@
-const FUR_ELISE_NAME = "Fur Elise";
+const FUR_ELISE_NAME = "Für Elise";
 const FUR_ELISE_NOTES = `
 ---
 (>> 250) 
