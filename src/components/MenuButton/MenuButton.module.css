@@ -7,6 +7,7 @@
     margin: 1rem;
     width: 60%;
     text-align: center;
+    margin-top: auto;
 }
 .button:hover {
     background-color: #7081ac;

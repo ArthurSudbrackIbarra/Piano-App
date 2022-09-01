@@ -3,11 +3,22 @@
     border-radius: 20px;
     font-weight: bold;
     background-color: #7585af;
-    padding: 0.8rem;
+    padding: 0.8rem 0.8rem 0.8rem 1.5rem;
     color: white;
     outline: none;
     border: none;
     width: 60%;
-    text-align: center;
     cursor: default;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif !important;
+    font-size: 1em;
+    margin-top: auto;
+}
+.select:hover {
+    background-color: #7081ac;
+}
+.select::-webkit-calendar-picker-indicator {
+    opacity: 100;
+    margin-left: 10px;
 }

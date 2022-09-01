@@ -1,3 +1,4 @@
+import React from 'react';
 import { useEffect } from 'react';
 import { setGlobalInstrument } from '../../utils/globals';
 import styles from './MenuSelect.module.css';
@@ -11,6 +12,7 @@ type MenuSelectProps = {
 }
 
 function MenuSelect(props: MenuSelectProps) {
+    const inputRef = React.createRef<HTMLInputElement>();
     useEffect(() => {
         const input = document.getElementById(props.inputId) as HTMLInputElement;
         if (input) {
@@ -24,10 +26,14 @@ function MenuSelect(props: MenuSelectProps) {
                     <option key={option} value={option} />
                 ))}
             </datalist>
-            <input id={props.inputId} list={props.datalistId} className={styles.select} onChange={
+            <input ref={inputRef} id={props.inputId} list={props.datalistId} className={styles.select} onChange={
                 event => {
                     setGlobalInstrument(event.target.value);
-                    props.onChange(event.target.value)
+                    props.onChange(event.target.value);
+                }} onClick={() => {
+                    if (inputRef.current) {
+                        inputRef.current.select();
+                    }
                 }}>
             </input>
         </>
