@@ -5,9 +5,6 @@
     display: flex;
     flex-grow: 1;
     border-radius: 20px 20px 0 0;
-    border-left: 2px solid #7081ac;
-    border-top: 2px solid #7081ac;
-    border-right: 2px solid #7081ac;
     background-color: #9cacd5;
     padding: 0 1rem 1rem 1rem;
 }

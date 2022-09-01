@@ -64,7 +64,7 @@ function App() {
           ></MenuOption>
           <MenuOption
             title="Instruments"
-            description="Choose which instrument to use from a variety of 59 instruments."
+            description="Choose which instrument to use from a variety of 127 instruments."
           >
             <MenuSelect
               options={instrumentsList}
