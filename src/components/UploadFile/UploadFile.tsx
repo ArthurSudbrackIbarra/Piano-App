@@ -1,5 +1,3 @@
-import { setGlobalFileContent, setGlobalFileName } from "../../utils/globals";
-
 type UploadFileProps = {
   id: string;
   onChange: (fileName: string, fileContent: string) => void;
@@ -21,8 +19,6 @@ function UploadFile(props: UploadFileProps) {
             reader.onload = (event) => {
               if (event.target && event.target.result) {
                 const fileContent = event.target.result as string;
-                setGlobalFileName(file.name);
-                setGlobalFileContent(fileContent);
                 props.onChange(file.name, fileContent);
               }
             };

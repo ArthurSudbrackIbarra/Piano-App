@@ -12,14 +12,22 @@ import {
   instrumentsList,
 } from "../../utils/audioHandler";
 import { InstrumentName } from "soundfont-player";
-import { getGlobalFileContent, getGlobalInstrument } from "../../utils/globals";
+import {
+  getGlobalInstrument,
+  getGlobalSampleName,
+  getGlobalSongNotes,
+  setGlobalInstrument,
+  setGlobalSampleName,
+  setGlobalSongNotes,
+} from "../../utils/globals";
+import samples from "../../assets/samples-as-code/samples";
 
 function App() {
   const UPLOAD_FILE_INPUT_ID = "fileUpload";
-  const [fileName, setFileName] = useState("");
+  const [songName, setSongName] = useState("");
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const playSong = async (fileContent: string) => {
-    if (!fileName || !fileContent) {
+    if (!songName || !fileContent) {
       return;
     }
     const interpreter = new PianoInterpreter(fileContent);
@@ -40,8 +48,10 @@ function App() {
   const changeInstrument = async (instrumentName: string) => {
     if (instrumentsList.includes(instrumentName)) {
       await createGlobalInstrument(instrumentName as InstrumentName);
+      setGlobalInstrument(instrumentName);
     }
   };
+  const samplesList = Array.from(samples.keys());
   return (
     <>
       <Center>
@@ -54,7 +64,7 @@ function App() {
           ></MenuOption>
           <MenuOption
             title="Instruments"
-            description="Choose which instrument to use."
+            description="Choose which instrument to use from a variety of 59 instruments."
           >
             <MenuSelect
               options={instrumentsList}
@@ -68,19 +78,36 @@ function App() {
           </MenuOption>
           <MenuOption
             title="Load Files"
-            description="Load '.piano' files and let the piano play by itself!"
+            description="Load '.piano' files or select example samples and let the piano play by itself!"
           >
             <MenuButton
               onClick={() => {
                 document.getElementById(UPLOAD_FILE_INPUT_ID)?.click();
               }}
+              marginBottom="0.5rem"
             >
               Load a File
             </MenuButton>
+            <MenuSelect
+              options={samplesList}
+              inputId="samplesInput"
+              datalistId="samplesList"
+              initialValue={getGlobalSampleName()}
+              onChange={(sampleName) => {
+                const notes = samples.get(sampleName);
+                if (notes) {
+                  setSongName(sampleName);
+                  setGlobalSampleName(sampleName);
+                  setGlobalSongNotes(notes);
+                }
+              }}
+            />
             <UploadFile
               id={UPLOAD_FILE_INPUT_ID}
-              onChange={(fileName) => {
-                setFileName(fileName);
+              onChange={(fileName, fileContent) => {
+                setSongName(fileName);
+                setGlobalSongNotes(fileContent);
+                setGlobalSampleName("");
               }}
             />
           </MenuOption>
@@ -90,11 +117,11 @@ function App() {
           >
             <MenuButton
               onClick={async () => {
-                await playSong(getGlobalFileContent());
+                await playSong(getGlobalSongNotes());
               }}
-              disabled={!fileName}
+              disabled={!songName}
             >
-              {fileName ? `Play ${formatFileName(fileName)}` : "No File Loaded"}
+              {songName ? `Play ${formatFileName(songName)}` : "No Song Loaded"}
             </MenuButton>
             {feedbackMessage}
           </MenuOption>

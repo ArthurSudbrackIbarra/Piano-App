@@ -32,7 +32,6 @@ function MenuSelect(props: MenuSelectProps) {
         list={props.datalistId}
         className={styles.select}
         onChange={(event) => {
-          setGlobalInstrument(event.target.value);
           props.onChange(event.target.value);
         }}
         onClick={() => {
