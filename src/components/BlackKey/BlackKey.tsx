@@ -10,8 +10,10 @@ function BlackKey(props: BlackKeyProps) {
     <div
       className={`${styles.key} blackKey`}
       id={props.note}
-      onMouseDown={() => {
-        playNote(props.note);
+      onMouseDown={(event) => {
+        if (!event.shiftKey) {
+          playNote(props.note);
+        }
       }}
     >
       <span className={styles.noteName}>{props.note}</span>

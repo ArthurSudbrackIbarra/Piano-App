@@ -12,8 +12,10 @@ function WhiteKey(props: WhiteKeyProps) {
       <div
         className={`${styles.key} whiteKey`}
         id={props.note}
-        onMouseDown={() => {
-          playNote(props.note);
+        onMouseDown={(event) => {
+          if (!event.shiftKey) {
+            playNote(props.note);
+          }
         }}
       >
         <span className={styles.noteName}>{props.note}</span>

@@ -58,7 +58,7 @@ function App() {
         <Piano />
         <MenuBox>
           <MenuOption
-            title="How to Play"
+            title="Tutorial"
             description="Click the piano keys with the mouse or use your keyboard to play.
             Drag the mouse to reach lower or higher notes."
           ></MenuOption>
