@@ -76,7 +76,7 @@ function App() {
             />
           </MenuOption>
           <MenuOption
-            title="Load Files"
+            title="Load Songs"
             description="Load '.piano' files or select example samples and let the piano play by itself!"
           >
             <MenuButton

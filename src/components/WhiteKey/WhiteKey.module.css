@@ -5,7 +5,7 @@
 .wrapper, .key {
     display: inline-flex;
     width: 65px;
-    height: 350px;
+    height: 400px;
 }
 .key {
     background-color: #ffffff;
