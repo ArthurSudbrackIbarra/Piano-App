@@ -21,11 +21,7 @@ export class PianoInterpreter {
 
   constructor(content: string, speed: number = 250) {
     this.content = content.replace(/\n/g, "\r\n");
-    if (speed > 0) {
-      this.speed = speed;
-    } else {
-      this.speed = 250;
-    }
+    this.speed = speed;
   }
 
   public async play(
@@ -80,15 +76,17 @@ export class PianoInterpreter {
                 // Animates the keys.
                 document.getElementById(note)?.classList.add("active");
                 // Timeout to remove the animation.
+                const timeoutTime = this.speed > 0 ? 20000 / this.speed : 50;
                 setTimeout(() => {
                   document.getElementById(note)?.classList.remove("active");
-                }, 20000 / this.speed);
+                }, timeoutTime);
               }
             }
           }
         }
         if (hasSongStarted) {
-          await delay(60000 / this.speed);
+          const delayTime = this.speed > 0 ? 60000 / this.speed : 0;
+          await delay(delayTime);
         }
       }
     } catch (error) {
