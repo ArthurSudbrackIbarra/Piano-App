@@ -18,18 +18,22 @@ const dragInfo: DragInfo = {
   mouseX: 0,
 };
 function mouseDownHandler(event: any) {
-  if (pianoRef.current) {
-    dragInfo.scrollLeft = pianoRef.current.scrollLeft;
-    pianoRef.current.style.cursor = "grabbing";
+  if (event.shiftKey) {
+    if (pianoRef.current) {
+      dragInfo.scrollLeft = pianoRef.current.scrollLeft;
+      pianoRef.current.style.cursor = "grabbing";
+    }
+    dragInfo.mouseX = event.clientX;
+    window.addEventListener("mousemove", mouseMoveHandler);
+    window.addEventListener("mouseup", mouseUpHandler);
   }
-  dragInfo.mouseX = event.clientX;
-  window.addEventListener("mousemove", mouseMoveHandler);
-  window.addEventListener("mouseup", mouseUpHandler);
 }
 function mouseMoveHandler(event: any) {
-  const distanceX = event.clientX - dragInfo.mouseX;
-  if (pianoRef.current) {
-    pianoRef.current.scrollLeft = dragInfo.scrollLeft - distanceX;
+  if (event.shiftKey) {
+    const distanceX = event.clientX - dragInfo.mouseX;
+    if (pianoRef.current) {
+      pianoRef.current.scrollLeft = dragInfo.scrollLeft - distanceX;
+    }
   }
 }
 function mouseUpHandler() {
@@ -48,7 +52,7 @@ function mouseUpHandler() {
 */
 const keyDownMap = new Map<string, boolean>();
 const noteElements = new Map<string, HTMLElement>();
-const simulateKeyDown = (event: globalThis.KeyboardEvent) => {
+const simulateKeyDown = (event: KeyboardEvent) => {
   const note = getNoteByKey(event.key);
   if (note) {
     if (!keyDownMap.get(note)) {
@@ -65,7 +69,7 @@ const simulateKeyDown = (event: globalThis.KeyboardEvent) => {
     }
   }
 };
-const simulateKeyUp = (event: globalThis.KeyboardEvent) => {
+const simulateKeyUp = (event: KeyboardEvent) => {
   const note = getNoteByKey(event.key);
   if (note) {
     keyDownMap.set(note, false);

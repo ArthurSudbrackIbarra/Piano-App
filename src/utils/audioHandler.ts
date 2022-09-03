@@ -1,7 +1,6 @@
 import Soundfont, { InstrumentName } from "soundfont-player";
 
 let instrument: Soundfont.Player | null = null;
-const GRAND_PIANO: InstrumentName = "acoustic_grand_piano";
 
 export async function createGlobalInstrument(
   instrumentName: InstrumentName
@@ -13,12 +12,13 @@ export async function createGlobalInstrument(
 /*
   Calling the 'createGlobalInstrument' function before-hand for faster loading.
 */
-createGlobalInstrument(GRAND_PIANO);
+createGlobalInstrument("acoustic_grand_piano");
 
 export function playNote(note: string, duration?: number): boolean {
   if (instrument) {
     instrument.play(note, undefined, {
       duration: duration,
+      gain: 7.5,
     });
     return true;
   }

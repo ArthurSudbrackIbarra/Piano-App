@@ -5,9 +5,9 @@ function delay(milliseconds: number) {
 }
 
 enum Commands {
-  WAIT = "~",
+  WAIT = "@",
   SPEED = ">>",
-  START = "---",
+  START = "START",
 }
 
 export class PianoInterpreter {

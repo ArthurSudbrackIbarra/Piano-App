@@ -25,17 +25,15 @@ import samples from "../../assets/samples-as-code/samples";
 function App() {
   const UPLOAD_FILE_INPUT_ID = "fileUpload";
   const [songName, setSongName] = useState("");
-  const [feedbackMessage, setFeedbackMessage] = useState("");
   const playSong = async (fileContent: string) => {
     if (!songName || !fileContent) {
       return;
     }
     const interpreter = new PianoInterpreter(fileContent);
     try {
-      setFeedbackMessage("");
       await interpreter.play();
     } catch (error: any) {
-      setFeedbackMessage(error.message);
+      alert(error.message);
     }
   };
   const formatFileName = (fileName: string): string => {
@@ -60,7 +58,7 @@ function App() {
           <MenuOption
             title="Tutorial"
             description="Click the piano keys with the mouse or use your keyboard to play.
-            Drag the mouse to reach lower or higher notes."
+            Hold Shift and drag the mouse to reach lower or higher notes."
           ></MenuOption>
           <MenuOption
             title="Instruments"
@@ -72,6 +70,7 @@ function App() {
               datalistId="instrumentsList"
               initialValue={getGlobalInstrument()}
               onChange={async (instrumentName) => {
+                setGlobalInstrument(instrumentName);
                 await changeInstrument(instrumentName);
               }}
             />
@@ -123,7 +122,6 @@ function App() {
             >
               {songName ? `Play ${formatFileName(songName)}` : "No Song Loaded"}
             </MenuButton>
-            {feedbackMessage}
           </MenuOption>
         </MenuBox>
       </Center>
