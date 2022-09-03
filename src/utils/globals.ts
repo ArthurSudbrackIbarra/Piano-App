@@ -11,7 +11,7 @@ let lastPlayedLine = 0;
 let lastSongSpeed = 250;
 
 let isRecording = false;
-let recordedNotes: string[] = ["START", "(>> -1)"];
+let recordedNotes: string[] = ["START", "(# 100)", "(>> -1)"];
 let lastRecordedNoteTime = 0;
 
 export function getGlobalInstrument() {
@@ -73,7 +73,7 @@ export function addRecordedNoteGlobal(note: string) {
   const currentTime = Date.now();
   const timeDifference = currentTime - lastRecordedNoteTime;
   if (timeDifference > 50) {
-    if (recordedNotes.length < 3) {
+    if (recordedNotes.length < 4) {
       recordedNotes.push(`(${note})`);
     } else {
       recordedNotes.push(`(@ ${timeDifference}) (${note})`);
@@ -87,5 +87,5 @@ export function getRecordedNotesGlobal() {
   return [...recordedNotes];
 }
 export function clearRecordedNotesGlobal() {
-  recordedNotes = ["START", "(>> -1)"];
+  recordedNotes = ["START", "(# 100)", "(>> -1)"];
 }

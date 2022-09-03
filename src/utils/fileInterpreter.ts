@@ -13,15 +13,22 @@ enum Commands {
   WAIT = "@",
   SPEED = ">>",
   START = "START",
+  KEY_DURATION = "#",
 }
 
 export class PianoInterpreter {
   private content: string;
   private speed: number;
+  private defaultKeyDuration: number;
 
-  constructor(content: string, speed: number = 250) {
+  constructor(
+    content: string,
+    speed: number = 250,
+    defaultKeyDuration: number = 1
+  ) {
     this.content = content.replace(/\n/g, "\r\n");
     this.speed = speed;
+    this.defaultKeyDuration = defaultKeyDuration;
   }
 
   public async play(
@@ -65,9 +72,13 @@ export class PianoInterpreter {
                 if (parts[1]) {
                   await delay(parseInt(parts[1]));
                 }
+              } else if (parts[0] === Commands.KEY_DURATION) {
+                if (parts[1]) {
+                  this.defaultKeyDuration = parseInt(parts[1]);
+                }
               } else {
                 const note = parts[0];
-                let duration = 1;
+                let duration = this.defaultKeyDuration;
                 if (parts[1]) {
                   duration = parseInt(parts[1]);
                 }
