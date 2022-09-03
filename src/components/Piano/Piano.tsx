@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import BlackKey from "../BlackKey/BlackKey";
 import WhiteKey from "../WhiteKey/WhiteKey";
 import styles from "./Piano.module.css";
-import { getNoteByKey } from "../../utils/keyMapping";
+import { getKeyByNote, getNoteByKey } from "../../utils/keyMapping";
 import { playNote } from "../../utils/audioHandler";
 
 /* 
@@ -89,11 +89,6 @@ window.addEventListener("keyup", simulateKeyUp);
     Play Notes on Key Presses Logic - End
 */
 
-/*
-    Notes [C1, C#1, D1...]
-*/
-const intervals = [1, 2, 3, 4, 5, 6, 7];
-
 function Piano() {
   useEffect(() => {
     if (pianoRef.current) {
@@ -104,26 +99,26 @@ function Piano() {
   });
   return (
     <div className={styles.piano} ref={pianoRef} onMouseDown={mouseDownHandler}>
-      {intervals.map((interval, index) => {
+      {[1, 2, 3, 4, 5, 6, 7].map((interval, index) => {
         return (
           <React.Fragment key={index}>
-            <WhiteKey note={`C${interval}`}>
-              <BlackKey note={`C#${interval}`} />
+            <WhiteKey note={`C${interval}`} mappedKey={getKeyByNote(`C${interval}`)}>
+              <BlackKey note={`C#${interval}`} mappedKey={getKeyByNote(`C#${interval}`)} />
             </WhiteKey>
-            <WhiteKey note={`D${interval}`}>
-              <BlackKey note={`D#${interval}`} />
+            <WhiteKey note={`D${interval}`} mappedKey={getKeyByNote(`D${interval}`)}>
+              <BlackKey note={`D#${interval}`} mappedKey={getKeyByNote(`D#${interval}`)} />
             </WhiteKey>
-            <WhiteKey note={`E${interval}`} />
-            <WhiteKey note={`F${interval}`}>
-              <BlackKey note={`F#${interval}`} />
+            <WhiteKey note={`E${interval}`} mappedKey={getKeyByNote(`E${interval}`)} />
+            <WhiteKey note={`F${interval}`} mappedKey={getKeyByNote(`F${interval}`)}>
+              <BlackKey note={`F#${interval}`} mappedKey={getKeyByNote(`F#${interval}`)} />
             </WhiteKey>
-            <WhiteKey note={`G${interval}`}>
-              <BlackKey note={`G#${interval}`} />
+            <WhiteKey note={`G${interval}`} mappedKey={getKeyByNote(`G${interval}`)}>
+              <BlackKey note={`G#${interval}`} mappedKey={getKeyByNote(`G#${interval}`)} />
             </WhiteKey>
-            <WhiteKey note={`A${interval}`}>
-              <BlackKey note={`A#${interval}`} />
+            <WhiteKey note={`A${interval}`} mappedKey={getKeyByNote(`A${interval}`)}>
+              <BlackKey note={`A#${interval}`} mappedKey={getKeyByNote(`A#${interval}`)} />
             </WhiteKey>
-            <WhiteKey note={`B${interval}`} />
+            <WhiteKey note={`B${interval}`} mappedKey={getKeyByNote(`B${interval}`)} />
           </React.Fragment>
         );
       })}

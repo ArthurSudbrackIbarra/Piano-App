@@ -1,14 +1,12 @@
 .key {
     position: absolute;
     display: flex;
-    justify-content: center;
     align-items: flex-end;
     top: 0;
     right: -21px;
     background-color: #3f3f3f;
-    width: 8px;
-    height: 230px;
-    padding: 1rem;
+    width: 40px;
+    height: 260px;
     border-radius: 0 0 7px 7px;
     z-index: 100;
 
@@ -23,8 +21,19 @@
 .key:active {
     background-color: black;
 }
+.noteInfo {
+    width: 100%;
+    text-align: center;
+}
 .noteName {
+    display: block;
     font-weight: bold;
-    color: #ffffff;
+    color: white;
+    margin-bottom: 10px;
+}
+.mappedKey {
+    display: block;
+    font-weight: bold;
+    color: #bdbdbd;
     margin-bottom: 10px;
 }

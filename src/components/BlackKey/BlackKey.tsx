@@ -3,6 +3,7 @@ import styles from "./BlackKey.module.css";
 
 type BlackKeyProps = {
   note: string;
+  mappedKey?: string;
 };
 
 function BlackKey(props: BlackKeyProps) {
@@ -16,7 +17,10 @@ function BlackKey(props: BlackKeyProps) {
         }
       }}
     >
-      <span className={styles.noteName}>{props.note}</span>
+      <div className={styles.noteInfo}>
+        <span className={styles.mappedKey}>{props.mappedKey}</span>
+        <span className={styles.noteName}>{props.note}</span>
+      </div>
     </div>
   );
 }

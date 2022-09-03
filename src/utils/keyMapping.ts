@@ -36,6 +36,12 @@ const keysMap = new Map<string, string>([
   ["]", "A#4"],
 ]);
 
+const invertedKeysMap = new Map(Array.from(keysMap).map(([k, v]) => [v, k]));
+
 export function getNoteByKey(key: string): string | undefined {
   return keysMap.get(key);
+}
+
+export function getKeyByNote(note: string): string | undefined {
+  return invertedKeysMap.get(note)?.toUpperCase();
 }

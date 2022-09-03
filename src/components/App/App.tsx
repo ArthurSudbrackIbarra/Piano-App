@@ -112,7 +112,7 @@ function App() {
           </MenuOption>
           <MenuOption
             title="Play"
-            description="Click the 'Play!' button to start the song that you've loaded."
+            description="Click the 'Play!' button to start the song that you've loaded and enjoy it!"
           >
             <MenuButton
               onClick={async () => {

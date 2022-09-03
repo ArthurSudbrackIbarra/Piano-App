@@ -4,6 +4,7 @@ import { playNote } from "../../utils/audioHandler";
 type WhiteKeyProps = {
   children?: React.ReactNode; // Black Key Children.
   note: string;
+  mappedKey?: string;
 };
 
 function WhiteKey(props: WhiteKeyProps) {
@@ -18,7 +19,10 @@ function WhiteKey(props: WhiteKeyProps) {
           }
         }}
       >
-        <span className={styles.noteName}>{props.note}</span>
+        <div className={styles.noteInfo}>
+          <span className={styles.mappedKey}>{props.mappedKey}</span>
+          <span className={styles.noteName}>{props.note}</span>
+        </div>
       </div>
       {props.children}
     </div>
