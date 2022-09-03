@@ -85,7 +85,7 @@ function App() {
               }}
               marginBottom="0.5rem"
             >
-              Load a File
+              Load From File
             </MenuButton>
             <MenuSelect
               options={samplesList}
