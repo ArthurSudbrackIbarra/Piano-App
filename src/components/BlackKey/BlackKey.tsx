@@ -1,5 +1,8 @@
 import { playNote } from "../../utils/audioHandler";
-import { addRecordedNoteGlobal, isRecordingSongGlobal } from "../../utils/globals";
+import {
+  addRecordedNoteGlobal,
+  isRecordingSongGlobal,
+} from "../../utils/globals";
 import styles from "./BlackKey.module.css";
 
 type BlackKeyProps = {

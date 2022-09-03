@@ -1,6 +1,9 @@
 import styles from "./WhiteKey.module.css";
 import { playNote } from "../../utils/audioHandler";
-import { addRecordedNoteGlobal, isRecordingSongGlobal } from "../../utils/globals";
+import {
+  addRecordedNoteGlobal,
+  isRecordingSongGlobal,
+} from "../../utils/globals";
 
 type WhiteKeyProps = {
   children?: React.ReactNode; // Black Key Children.
