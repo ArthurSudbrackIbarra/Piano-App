@@ -1,5 +1,6 @@
 import styles from "./WhiteKey.module.css";
 import { playNote } from "../../utils/audioHandler";
+import { addRecordedNoteGlobal, isRecordingSongGlobal } from "../../utils/globals";
 
 type WhiteKeyProps = {
   children?: React.ReactNode; // Black Key Children.
@@ -16,6 +17,9 @@ function WhiteKey(props: WhiteKeyProps) {
         onMouseDown={(event) => {
           if (!event.shiftKey) {
             playNote(props.note);
+            if (isRecordingSongGlobal()) {
+              addRecordedNoteGlobal(props.note);
+            }
           }
         }}
       >

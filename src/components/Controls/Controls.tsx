@@ -1,6 +1,6 @@
 import React from 'react';
 import { PianoInterpreter } from '../../utils/fileInterpreter';
-import { getGlobalSongNotes, getLastPlayedLineGlobal, getLastSongSpeedGlobal, isSongPausedGlobal, setRecordingSongGlobal, setSongPausedGlobal } from '../../utils/globals';
+import { clearRecordedNotesGlobal, getGlobalSongNotes, getLastPlayedLineGlobal, getLastSongSpeedGlobal, getRecordedNotesGlobal, isRecordingSongGlobal, isSongPausedGlobal, setRecordingSongGlobal, setSongPausedGlobal } from '../../utils/globals';
 import styles from './Controls.module.css';
 
 const playPauseRef = React.createRef<HTMLDivElement>();
@@ -15,6 +15,16 @@ export function updatePlayPauseButton() {
         }
     }
 }
+const recordingRef = React.createRef<HTMLDivElement>();
+export function updateRecordingButton() {
+    if (recordingRef.current) {
+        if (isRecordingSongGlobal()) {
+            recordingRef.current.classList.add(styles.recording);
+        } else {
+            recordingRef.current.classList.remove(styles.recording);
+        }
+    }
+}
 
 async function continueSong() {
     const songNotes = getGlobalSongNotes();
@@ -23,6 +33,20 @@ async function continueSong() {
     if (songNotes.length > 0 && lastPlayedLine < songNotes.length) {
         const interpreter = new PianoInterpreter(songNotes, lastSongSpeed);
         await interpreter.play(lastPlayedLine, true);
+    }
+}
+
+function writeNotesToFile() {
+    const notes = getRecordedNotesGlobal();
+    const fileName = `recording-${new Date().toLocaleDateString()}.piano`;
+    if (notes.length > 0) {
+        const file = new File([notes.join('\n')], fileName, { type: 'text/plain' });
+        const url = URL.createObjectURL(file);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = fileName;
+        link.click();
+        clearRecordedNotesGlobal();
     }
 }
 
@@ -41,9 +65,13 @@ function Controls() {
                         await continueSong();
                     }
                 }}></div>
-                <div className={styles.record} onClick={() => {
+                <div className={styles.record} ref={recordingRef} onClick={() => {
                     setRecordingSongGlobal(!recording);
                     recording = !recording;
+                    updateRecordingButton();
+                    if (!recording) {
+                        writeNotesToFile();
+                    }
                 }}></div>
             </div>
         </div>

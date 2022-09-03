@@ -67,3 +67,17 @@
 .record:hover {
     background-color: #d14a4a;
 }
+.record.recording {
+    animation: recording 1s infinite;
+}
+@keyframes recording {
+    0% {
+        background-color: #e76060;
+    }
+    50% {
+        background-color: #d14a4a;
+    }
+    100% {
+        background-color: #e76060;
+    }
+}

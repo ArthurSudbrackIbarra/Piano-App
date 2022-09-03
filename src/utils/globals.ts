@@ -8,9 +8,11 @@ let globalSampleName = "";
 
 let isPaused = false;
 let lastPlayedLine = 0;
-let lastSongSpeed = 120;
+let lastSongSpeed = 250;
 
 let isRecording = false;
+let recordedNotes: string[] = ["START", "(>> 250)"];
+let lastRecordedNoteTime = 0;
 
 export function getGlobalInstrument() {
   return globalInstrument;
@@ -66,4 +68,19 @@ export function isRecordingSongGlobal() {
 }
 export function setRecordingSongGlobal(value: boolean) {
   isRecording = value;
+}
+export function addRecordedNoteGlobal(note: string) {
+  const currentTime = Date.now();
+  if (currentTime - lastRecordedNoteTime > 50) {
+    recordedNotes.push(`(${note})`);
+  } else {
+    recordedNotes[recordedNotes.length - 1] += ` (${note})`;
+  }
+  lastRecordedNoteTime = currentTime;
+}
+export function getRecordedNotesGlobal() {
+  return [...recordedNotes];
+}
+export function clearRecordedNotesGlobal() {
+  recordedNotes = ["START", "(>> 250)"];
 }

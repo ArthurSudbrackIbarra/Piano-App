@@ -19,12 +19,12 @@ export class PianoInterpreter {
   private content: string;
   private speed: number;
 
-  constructor(content: string, speed: number = 120) {
+  constructor(content: string, speed: number = 250) {
     this.content = content.replace(/\n/g, "\r\n");
     if (speed > 0) {
       this.speed = speed;
     } else {
-      this.speed = 120;
+      this.speed = 250;
     }
   }
 

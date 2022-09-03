@@ -103,7 +103,6 @@ function App() {
                   setGlobalSampleName(sampleName);
                   setGlobalSongNotes(notes);
                   setLastPlayedLineGlobal(0);
-                  updatePlayPauseButton();
                 }
               }}
             />
@@ -114,7 +113,6 @@ function App() {
                 setGlobalSongNotes(fileContent);
                 setGlobalSampleName("");
                 setLastPlayedLineGlobal(0);
-                updatePlayPauseButton();
               }}
             />
           </MenuOption>
@@ -125,6 +123,7 @@ function App() {
             <MenuButton
               onClick={async () => {
                 setSongPausedGlobal(false);
+                updatePlayPauseButton();
                 await playSong(getGlobalSongNotes());
               }}
               disabled={!songName}

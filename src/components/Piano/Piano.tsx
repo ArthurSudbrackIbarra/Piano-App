@@ -4,6 +4,7 @@ import WhiteKey from "../WhiteKey/WhiteKey";
 import styles from "./Piano.module.css";
 import { getKeyByNote, getNoteByKey } from "../../utils/keyMapping";
 import { playNote } from "../../utils/audioHandler";
+import { addRecordedNoteGlobal, getRecordedNotesGlobal, isRecordingSongGlobal } from "../../utils/globals";
 
 /* 
     Draggable Piano Logic - Start
@@ -56,6 +57,9 @@ const simulateKeyDown = (event: KeyboardEvent) => {
   const note = getNoteByKey(event.key);
   if (note) {
     if (!keyDownMap.get(note)) {
+      if (isRecordingSongGlobal()) {
+        addRecordedNoteGlobal(note);
+      }
       keyDownMap.set(note, true);
       let noteElement = noteElements.get(note);
       if (!noteElement) {
