@@ -23,23 +23,22 @@
     background-color: #e5e5e5
 }
 .key:active {
-    background-color: #bfbfbf;
+    background-color: #d5d5d5;
 }
 .noteInfo {
     width: 100%;
     text-align: center;
 }
-.noteName {
+.noteInfo span {
     display: block;
     font-weight: bold;
-    color: #3f3f3f;
     font-size: 1.2em;
     margin-bottom: 10px;
 }
-.mappedKey {
-    display: block;
-    font-weight: bold;
-    color: #bdbdbd;
+.noteName {
+    color: #3f3f3f;
     font-size: 1.2em;
-    margin-bottom: 10px;
+}
+.mappedKey {
+    color: #bdbdbd;
 }

@@ -25,15 +25,14 @@
     width: 100%;
     text-align: center;
 }
-.noteName {
+.noteInfo span {
     display: block;
     font-weight: bold;
-    color: white;
     margin-bottom: 10px;
 }
+.noteName {
+    color: white;
+}
 .mappedKey {
-    display: block;
-    font-weight: bold;
     color: #bdbdbd;
-    margin-bottom: 10px;
 }

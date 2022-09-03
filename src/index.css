@@ -17,7 +17,7 @@ body {
   Global piano keys configuration.
 */
 .whiteKey.active {
-  background-color: #bfbfbf;
+  background-color: #d5d5d5;
 }
 .blackKey.active {
   background-color: black;
