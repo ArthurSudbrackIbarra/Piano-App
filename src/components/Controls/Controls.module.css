@@ -1,0 +1,69 @@
+.box {
+    width: 200px;
+    height: 40px;
+    position: absolute;
+    right: 0;
+    z-index: 200;
+    text-align: center;
+    border-radius: 0 0 20px 20px;
+    background-color: #9cacd5;
+    transition: height 0.3s ease-in-out;
+}
+.box .actions {
+    opacity: 0;
+}
+.box:hover {
+    height: 100px;
+    transition: height 0.3s ease-in-out;
+}
+.box:hover .actions {
+    animation: showActions 0.3s ease-in-out forwards;
+}
+@keyframes showActions {
+    50% {
+        display: block;
+        opacity: 0;
+    }
+    100% {
+        opacity: 100;
+    }
+}
+.text {
+    color: #7180a7;
+    font-weight: bold;
+    margin-top: 5px;
+    display: block;
+}
+.actions {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+.playPause, .record {
+    cursor: pointer;
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    margin: 20px 10px;
+}
+.playPause {
+    background-color: #7180a7;
+}
+.playPause:hover {
+    background-color: #5e6e9b;
+}
+.playPause.paused {
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    transform: rotate(90deg);
+}
+.playPause.playing {
+    clip-path: none;
+}
+.record {
+    border-radius: 50%;
+    background-color: #e76060;
+}
+.record:hover {
+    background-color: #d14a4a;
+}

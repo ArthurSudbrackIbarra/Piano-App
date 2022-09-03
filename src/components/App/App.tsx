@@ -19,17 +19,20 @@ import {
   setGlobalInstrument,
   setGlobalSampleName,
   setGlobalSongNotes,
+  setLastPlayedLineGlobal,
+  setSongPausedGlobal,
 } from "../../utils/globals";
 import samples from "../../assets/samples-as-code/samples";
+import Controls, { updatePlayPauseButton } from "../Controls/Controls";
 
 function App() {
   const UPLOAD_FILE_INPUT_ID = "fileUpload";
   const [songName, setSongName] = useState("");
-  const playSong = async (fileContent: string) => {
-    if (!songName || !fileContent) {
+  const playSong = async (songNotes: string) => {
+    if (!songName || !songNotes) {
       return;
     }
-    const interpreter = new PianoInterpreter(fileContent);
+    const interpreter = new PianoInterpreter(songNotes);
     try {
       await interpreter.play();
     } catch (error: any) {
@@ -52,6 +55,7 @@ function App() {
   const samplesList = Array.from(samples.keys());
   return (
     <>
+      <Controls />
       <Center>
         <Piano />
         <MenuBox>
@@ -98,6 +102,8 @@ function App() {
                   setSongName(sampleName);
                   setGlobalSampleName(sampleName);
                   setGlobalSongNotes(notes);
+                  setLastPlayedLineGlobal(0);
+                  updatePlayPauseButton();
                 }
               }}
             />
@@ -107,6 +113,8 @@ function App() {
                 setSongName(fileName);
                 setGlobalSongNotes(fileContent);
                 setGlobalSampleName("");
+                setLastPlayedLineGlobal(0);
+                updatePlayPauseButton();
               }}
             />
           </MenuOption>
@@ -116,6 +124,7 @@ function App() {
           >
             <MenuButton
               onClick={async () => {
+                setSongPausedGlobal(false);
                 await playSong(getGlobalSongNotes());
               }}
               disabled={!songName}

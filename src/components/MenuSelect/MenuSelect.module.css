@@ -15,7 +15,7 @@
     margin-bottom: 1.5rem;
 }
 .select:hover {
-    background-color: #7081ac;
+    background-color: #5e6e9b;
 }
 .select::-webkit-calendar-picker-indicator {
     opacity: 100;

@@ -10,7 +10,7 @@
     margin-bottom: 1.5rem;
 }
 .button:hover {
-    background-color: #7081ac;
+    background-color: #5e6e9b;
 }
 .button.disabled {
     cursor: default;

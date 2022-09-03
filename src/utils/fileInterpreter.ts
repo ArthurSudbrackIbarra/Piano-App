@@ -1,4 +1,9 @@
 import { playNote } from "./audioHandler";
+import {
+  isSongPausedGlobal,
+  setLastPlayedLineGlobal,
+  setLastSongSpeedGlobal,
+} from "./globals";
 
 function delay(milliseconds: number) {
   return new Promise((resolve) => setTimeout(resolve, milliseconds));
@@ -23,22 +28,29 @@ export class PianoInterpreter {
     }
   }
 
-  public async play(): Promise<void> {
+  public async play(
+    startLine: number = 0,
+    hasSongStarted: boolean = false
+  ): Promise<void> {
     try {
       const lines = this.content.split("\n");
-      let hasStarted = false;
-      for (const line of lines) {
+      for (let i = startLine; i < lines.length; i++) {
+        const line = lines[i];
         if (line.length === 0) {
           continue;
+        }
+        if (isSongPausedGlobal()) {
+          setLastPlayedLineGlobal(i);
+          return;
         }
         const splitted = line
           .replace(/\s+/g, " ")
           .trim()
           .split(/\(*\)( |\n)/);
         if (splitted[0].toUpperCase() === Commands.START) {
-          hasStarted = true;
+          hasSongStarted = true;
         } else {
-          if (hasStarted) {
+          if (hasSongStarted) {
             for (const item of splitted) {
               if (item === " " || item.length === 0) {
                 continue;
@@ -51,6 +63,7 @@ export class PianoInterpreter {
               if (parts[0] === Commands.SPEED) {
                 if (parts[1]) {
                   this.speed = parseInt(parts[1]);
+                  setLastSongSpeedGlobal(this.speed);
                 }
               } else if (parts[0] === Commands.WAIT) {
                 if (parts[1]) {
@@ -74,11 +87,12 @@ export class PianoInterpreter {
             }
           }
         }
-        if (hasStarted) {
+        if (hasSongStarted) {
           await delay(60000 / this.speed);
         }
       }
     } catch (error) {
+      console.error(error);
       throw new Error("Error: Invalid '.piano' file.");
     }
   }
