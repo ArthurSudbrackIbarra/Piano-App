@@ -2,7 +2,7 @@
 
 Piano App is a virtual piano site that you can use to play songs with many different instruments. It's possible to play the piano keys with your mouse/keyboard or let the piano play by itself by loading _'.piano'_ files or example song samples that already come with the site.
 
-(Insert Video Here)
+https://user-images.githubusercontent.com/69170322/188294938-a2bcb9cb-cf49-4ac8-a2ee-753db87fbdf9.mp4
 
 ## Table of Contents
 
