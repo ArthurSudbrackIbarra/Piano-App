@@ -6,7 +6,7 @@ https://user-images.githubusercontent.com/69170322/188294938-a2bcb9cb-cf49-4ac8-
 
 ## Table of Contents
 
-- [More About '.piano' files](#more-about-piano-files)
+- [More About '.piano' Files](#more-about-piano-files)
   - [Setting the Song Start Point](#setting-the-song-start-point)
   - [Setting the Song Speed](#setting-the-song-speed)
   - [Playing a Note](#playing-a-note)
@@ -17,9 +17,9 @@ https://user-images.githubusercontent.com/69170322/188294938-a2bcb9cb-cf49-4ac8-
 - [Run with Node.js](#run-with-nodejs)
 - [Run with Docker](#run-with-docker)
 
-## More About '.piano' files
+## More About '.piano' Files
 
-_.piano_ files are a type of file which I created in an attempt to represent a song in a human-readable way, using plain text. Inside _.piano_ files, you can specify information such as the notes that make up the song, their durations, how fast they should be played, or even pauses in the song.
+_.piano_ files are a type of file that I created in an attempt to represent a song in a human-readable way, using plain text. Inside _.piano_ files, you can specify information such as the notes that make up the song, their durations, how fast they should be played, or even pauses in the song.
 
 ### Setting the Song Start Point
 
