@@ -7,7 +7,6 @@ Piano App is a virtual piano site that you can use to play songs with many diffe
 ## Table of Contents
 
 - [More About '.piano' files](#more-about-piano-files)
-- [How to Run](#how-to-run)
   - [Setting the Song Start Point](#setting-the-song-start-point)
   - [Setting the Song Speed](#setting-the-song-speed)
   - [Playing a Note](#playing-a-note)
@@ -15,6 +14,8 @@ Piano App is a virtual piano site that you can use to play songs with many diffe
   - [Setting the Duration of a Note](#setting-the-duration-of-a-note)
   - [Setting a Default Note Duration](#setting-a-default-note-duration)
   - [Pauses](#pauses)
+- [Run with Node.js](#run-with-nodejs)
+- [Run with Docker](#run-with-docker)
 
 ## More About '.piano' files
 
@@ -22,7 +23,7 @@ _.piano_ files are a type of file which I created in an attempt to represent a s
 
 ### Setting the Song Start Point
 
-The beginning of a song is set through the `START` keyword. This keyword must be present every _.piano_ file.
+The beginning of a song is set through the `START` keyword. This keyword must be present in every _.piano_ file.
 
 ```
 START
@@ -103,6 +104,24 @@ START
 (A3)
 ```
 
-## How to Run
+## Run with Node.js
 
-TBD...
+If you have Node.js 16.15.1^ installed in your machine, clone the repository and type the following commands:
+
+```shell
+npm install
+```
+
+```shell
+npm start
+```
+
+## Run with Docker
+
+If you have Docker installed in your machine, clone the repository and perform the following steps:
+
+```shell
+docker compose up -d
+```
+
+Then, in any browser, access http://localhost:3000.

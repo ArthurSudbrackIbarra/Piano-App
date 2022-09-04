@@ -1,0 +1,9 @@
+version: "3.9"
+services:
+  piano-app:
+    container_name: piano-app-container
+    ports:
+      - 3000:3000
+    build: .
+    image: arthur-sudbrack-ibarra/piano-app:v1
+    

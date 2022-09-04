@@ -1,0 +1,8 @@
+.gitattributes
+.gitignore
+docker-compose.yaml
+Dockerfile
+package-lock.json
+README.md
+node_modules
+src/assets/samples
