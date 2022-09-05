@@ -62,7 +62,7 @@ function App() {
           <MenuOption
             title="Tutorial"
             description="Click the piano keys with the mouse or use your keyboard to play.
-            Hold Shift and drag the mouse to reach lower or higher notes."
+            Hold Shift and drag the mouse to reach lower or higher notes. Use Enter to toggle sustain of/off."
           ></MenuOption>
           <MenuOption
             title="Instruments"

@@ -102,8 +102,9 @@ export class PianoInterpreter {
           }
         }
         if (hasSongStarted) {
-          const delayTime = this.speed > 0 ? 60000 / this.speed : 0;
-          await delay(delayTime);
+          if (this.speed > 0) {
+            await delay(60000 / this.speed);
+          }
         }
       }
     } catch (error) {

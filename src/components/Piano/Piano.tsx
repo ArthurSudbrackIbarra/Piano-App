@@ -6,8 +6,8 @@ import { getKeyByNote, getNoteByKey } from "../../utils/keyMapping";
 import { playNote } from "../../utils/audioHandler";
 import {
   addRecordedNoteGlobal,
-  getRecordedNotesGlobal,
   isRecordingSongGlobal,
+  toggleSustainGlobal,
 } from "../../utils/globals";
 
 /* 
@@ -58,6 +58,10 @@ function mouseUpHandler() {
 const keyDownMap = new Map<string, boolean>();
 const noteElements = new Map<string, HTMLElement>();
 const simulateKeyDown = (event: KeyboardEvent) => {
+  if (event.key === "Enter") {
+    toggleSustainGlobal();
+    return;
+  }
   const note = getNoteByKey(event.key);
   if (note) {
     if (!keyDownMap.get(note)) {

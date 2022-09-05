@@ -6,13 +6,17 @@ let globalSongName = "";
 let globalSongNotes = "";
 let globalSampleName = "";
 
+let isSustainOn = false;
+
 let isPaused = false;
 let lastPlayedLine = 0;
 let lastSongSpeed = 250;
 
 let isRecording = false;
-let recordedNotes: string[] = ["START", "(>> -1)"];
+let recordedNotes: string[] = [];
 let lastRecordedNoteTime = 0;
+const MILLISECONDS_ERROR_MARGIN = 7;
+const SIMULTANEOUS_NOTES_MAX_TIME_DIFFERENCE = 10;
 
 export function getGlobalInstrument() {
   return globalInstrument;
@@ -42,6 +46,13 @@ export function setGlobalSampleName(sampleName: string) {
   globalSampleName = sampleName;
 }
 
+export function isSustainOnGlobal() {
+  return isSustainOn;
+}
+export function toggleSustainGlobal() {
+  isSustainOn = !isSustainOn;
+}
+
 export function isSongPausedGlobal() {
   return isPaused;
 }
@@ -69,15 +80,19 @@ export function isRecordingSongGlobal() {
 export function setRecordingSongGlobal(value: boolean) {
   isRecording = value;
 }
-export function addRecordedNoteGlobal(note: string, duration: number = 100) {
+export function addRecordedNoteGlobal(note: string, duration?: number) {
   const currentTime = performance.now();
-  const timeDifference = currentTime - lastRecordedNoteTime;
-  if (timeDifference > 50) {
-    if (recordedNotes.length < 3) {
-      recordedNotes.push(`(${note} ${duration})`);
+  const timeDifference =
+    currentTime - lastRecordedNoteTime - MILLISECONDS_ERROR_MARGIN;
+  if (!duration) {
+    duration = isSustainOn ? 100 : 1;
+  }
+  if (timeDifference > SIMULTANEOUS_NOTES_MAX_TIME_DIFFERENCE) {
+    if (recordedNotes.length === 0) {
+      recordedNotes.push("START", "(>> -1)", `(${note} ${duration})`);
     } else {
       recordedNotes.push(
-        `(@ ${Math.round(timeDifference) - 10}) (${note} ${duration})`
+        `(@ ${Math.round(timeDifference)}) (${note} ${duration})`
       );
     }
   } else {
@@ -89,5 +104,5 @@ export function getRecordedNotesGlobal() {
   return [...recordedNotes];
 }
 export function clearRecordedNotesGlobal() {
-  recordedNotes = ["START", "(>> -1)"];
+  recordedNotes = [];
 }

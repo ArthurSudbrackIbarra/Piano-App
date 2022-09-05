@@ -1,4 +1,5 @@
 import Soundfont, { InstrumentName } from "soundfont-player";
+import { isSustainOnGlobal } from "./globals";
 
 let instrument: Soundfont.Player | null = null;
 
@@ -15,6 +16,9 @@ export async function createGlobalInstrument(
 createGlobalInstrument("acoustic_grand_piano");
 
 export function playNote(note: string, duration?: number): boolean {
+  if (!duration) {
+    duration = isSustainOnGlobal() ? 100 : 1;
+  }
   if (instrument) {
     instrument.play(note, undefined, {
       duration: duration,
