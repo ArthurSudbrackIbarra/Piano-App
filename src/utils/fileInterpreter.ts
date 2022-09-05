@@ -1,5 +1,7 @@
 import { playNote } from "./audioHandler";
 import {
+  addRecordedNoteGlobal,
+  isRecordingSongGlobal,
   isSongPausedGlobal,
   setLastPlayedLineGlobal,
   setLastSongSpeedGlobal,
@@ -84,6 +86,10 @@ export class PianoInterpreter {
                 }
                 // Plays the note sound.
                 playNote(note, duration);
+                // Record the note if the user is recording.
+                if (isRecordingSongGlobal()) {
+                  addRecordedNoteGlobal(note, duration);
+                }
                 // Animates the keys.
                 document.getElementById(note)?.classList.add("active");
                 // Timeout to remove the animation.
